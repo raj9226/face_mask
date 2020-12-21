@@ -33,8 +33,8 @@ class myThread(threading.Thread):
         filename = (os.path.join(op, '%d.png') % count)
         attachment = open(filename, "rb")
         msg = MIMEMultipart()
-        msg['From'] = 'testingmask87@gmail.com'
-        msg['To'] = 'testingmask87@gmail.com'
+        msg['From'] = 'email'
+        msg['To'] = 'receiver_email'
         msg['Subject'] = SUBJECT
         msg.attach(MIMEText(TEXT, 'plain'))
         p = MIMEBase('application', 'octet=stream')
@@ -45,9 +45,9 @@ class myThread(threading.Thread):
         s = smtplib.SMTP('smtp.gmail.com', 587)
         s.ehlo()
         s.starttls()
-        s.login('testingmask87@gmail.com', 'raj9226raj')
+        s.login('email', 'password')
         text = msg.as_string()
-        s.sendmail('testingmask87@gmail.com', 'testingmask87@gmail.com', text)
+        s.sendmail('email', 'receiver_email', text)
 
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
